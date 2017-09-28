@@ -15,7 +15,7 @@
         <div class="value">{{ vue }}</div>
       </div>
       <div class="item">
-        <div class="name">Electron:</div>
+        <div class="name">Electrona:</div>
         <div class="value">{{ electron }}</div>
       </div>
       <div class="item">
