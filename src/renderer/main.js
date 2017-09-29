@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-import './styles/global.css'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
