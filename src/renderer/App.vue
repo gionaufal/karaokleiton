@@ -11,5 +11,5 @@
 </script>
 
 <style>
-  /* CSS */
+  @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css');
 </style>
