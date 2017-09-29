@@ -59,5 +59,11 @@ export default {
   a {
     cursor: pointer;
   }
+
+  h2 {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    color: #268bd2;
+  }
 </style>
 
