@@ -1,12 +1,17 @@
 <template>
-  <div id="app">
+  <v-app id="app" toolbar footer dark>
     <router-view></router-view>
-  </div>
+  </v-app>
 </template>
 
 <script>
   export default {
-    name: 'karaokleiton'
+    name: 'karaokleiton',
+    data () {
+      return {
+        drawer: true
+      }
+    }
   }
 </script>
 

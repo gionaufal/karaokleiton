@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class='title'>🎤 Karaokleiton 🎶</h1>
     <div class="video-container">
       <iframe
          v-if="loaded"
