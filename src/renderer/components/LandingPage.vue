@@ -1,13 +1,29 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="column-left col-sm-9">
+  <div>
+    <v-navigation-drawer
+      persistent
+      clipped
+      v-model="drawer"
+      light
+      enable-resize-watcher
+      absolute
+      dark
+      right
+    >
+      <search></search>
+    </v-navigation-drawer>
+
+    <v-toolbar class="indigo" dark fixed>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>Karaokleiton 🎤 🎹 🎶 🎸</v-toolbar-title>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    </v-toolbar>
+
+    <main>
+      <v-container fluid>
         <player></player>
-      </div>
-      <div class="column-right col-sm-3">
-        <search></search>
-      </div>
-    </div>
+      </v-container>
+    </main>
   </div>
 </template>
 
@@ -17,6 +33,11 @@ import Player from './LandingPage/Player'
 
 export default {
   name: 'landing-page',
+  data () {
+    return {
+      drawer: true
+    }
+  },
   components: {
     Search,
     Player

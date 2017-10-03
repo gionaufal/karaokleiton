@@ -1,19 +1,25 @@
 <template>
-  <div class="search-box">
-    <h2>Search for a song</h2>
-    <div>
-      <input type="text" v-model="input_val" @change='getVideos()'>
-    </div>
+  <div>
+    <v-form>
+      <v-text-field 
+      v-model="input_val"
+      @keyup.enter.native="getVideos()"
+      label="Qual é a música?">
+      </v-text-field>
+    </v-form>
 
+  <div class="search-box">
     <p>Searching for: {{input_val}} karaoke</p>
-    <ul>
-      <li v-for="video in videos">
-        <a @click="changeVideo(video.id.videoId)">
-          <img :src="video.snippet.thumbnails.medium.url" alt="image">
-          <p>name: {{video.snippet.title}}</p>
-        </a>
-      </li>
-    </ul>
+
+    <v-card v-for="video in videos" :key="video.id.videoId" @click="changeVideo(video.id.videoId)">
+      <v-card-media :src="video.snippet.thumbnails.medium.url">
+        <v-card-title class="">
+            <div class="title-video">{{video.snippet.title}}</div>
+          </v-card-title>
+      </v-card-media>
+    </v-card>
+
+  </div>
   </div>
 </template>
 
@@ -49,21 +55,10 @@ export default {
 }
 </script>
 
-<style>
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  a {
-    cursor: pointer;
-  }
-
-  h2 {
-    margin-bottom: 20px;
-    margin-top: 10px;
-    color: #268bd2;
-  }
+<style scopedSlots>
+ .title-video {
+   font-size: 20px;
+   text-shadow: 3px 1px 1px rgba(150, 150, 150, 0.6);
+ }
 </style>
 
