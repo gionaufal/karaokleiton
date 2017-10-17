@@ -2,6 +2,13 @@
 
 > A Karaoke app that gets songs from YouTube, built with electron-vue
 
+#### Screenshots
+
+![Karaokleiton screenshot](karaokleiton_1.png)
+
+![Karaokleiton screenshot](karaokleiton_2.png)
+
+
 #### Build Setup
 
 ``` bash
