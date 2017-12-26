@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <app-title class="col"></app-title>
-    <app-search class="col"></app-search>
+    <div class="row">
+      <app-title class="col-12"></app-title>
+      <app-search class="col-12"></app-search>
+    </div>
   </div>
 </template>
 
