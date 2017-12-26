@@ -18,11 +18,16 @@
   import results from './Results.vue'
 
   export default {
-    data: () => {
+    data () {
       return {
         keyword: null,
         karaokeOnly: true,
         results: null
+      }
+    },
+    watch: {
+      karaokeOnly () {
+        this.searchMusic()
       }
     },
     methods: {
