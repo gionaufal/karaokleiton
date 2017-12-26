@@ -24,12 +24,17 @@
         const baseUrs = 'https://www.googleapis.com/youtube/v3/search'
         const apiKey = 'AIzaSyD5lcXLJGhyiRdRNPcfT8ZJyEkSUadEi6E'
 
+        let keyword = (this.karaokeOnly ? this.keyword + ' + karaoke' : this.keyword)
+
         if (this.keyword !== null && this.keyword.length > 2) {
           axios
             .get(baseUrs, {
               params: {
                 part: 'snippet',
-                q: this.keyword,
+                q: keyword,
+                type: 'video',
+                videoEmbeddable: 'true',
+                maxResults: 20,
                 key: apiKey
               }
             })
