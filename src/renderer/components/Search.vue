@@ -6,17 +6,23 @@
       @input="searchMusic"
       placeholder="Busque pela música aqui">
       <input type="checkbox" v-model="karaokeOnly">
+
+      <app-results
+        :videos="results"
+        v-if="results!==null"></app-results>
   </section>  
 </template>
 
 <script>
   import axios from 'axios'
+  import results from './Results.vue'
 
   export default {
     data: () => {
       return {
         keyword: null,
-        karaokeOnly: true
+        karaokeOnly: true,
+        results: null
       }
     },
     methods: {
@@ -39,13 +45,16 @@
               }
             })
             .then(result => {
-              console.log(result)
+              this.results = result.data.items
             })
             .catch(error => {
               console.log(error)
             })
         }
       }
+    },
+    components: {
+      appResults: results
     }
   }
 </script>
