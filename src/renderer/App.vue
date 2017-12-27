@@ -5,10 +5,14 @@
         v-if="showPlayer"
         :videoId="videoId"
         class="col-12"></app-player>
-      
+
       <app-title class="col-12" v-show="!showPlayer"></app-title>
       <app-search class="col-12" v-show="!showPlayer"></app-search>
     </div>
+
+    <ul>
+      <li v-for="video in videos">{{ video.name }}</li>
+    </ul>
   </div>
 </template>
 
@@ -17,11 +21,19 @@
   import Title from './components/includes/Title.vue'
   import Player from './components/player/Player.vue'
   import { busPlayer } from './main'
+  import db from './Database'
+
+  let videosRef = db.ref('videos')
 
   export default {
     data () {
       return {
         showPlayer: false
+      }
+    },
+    firebase () {
+      return {
+        videos: videosRef
       }
     },
     components: {
@@ -45,5 +57,5 @@
 </script>
 
 <style lang="sass">
-  
+
 </style>
