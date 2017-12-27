@@ -3,7 +3,8 @@
     <div class="col-12 justify-content-around">
       <div class="card"
         v-for="video in videos"
-        :key="video.id.videoId">
+        :key="video.id.videoId"
+        @click="playVideo(video.id.videoId)">
 
         <div class="img-container">
           <img :src="video.snippet.thumbnails.medium.url">
@@ -19,8 +20,15 @@
 </template>
 
 <script>
+  import { busPlayer } from '../../main'
+
   export default {
-    props: ['videos']
+    props: ['videos'],
+    methods: {
+      playVideo (videoId) {
+        busPlayer.$emit('cardWasClicked', videoId)
+      }
+    }
   }
 </script>
 
@@ -30,7 +38,7 @@
     flex-wrap: wrap
 
   .card
-    margin: 0 0 30px 0
+    margin: 0 0 15px 0
     width: 19%
 
   .card-block
@@ -50,5 +58,4 @@
     img
       max-height: 100%
       max-width: 100%
-
 </style>
