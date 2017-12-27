@@ -12,6 +12,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 export const busSearch = new Vue()
+export const busPlayer = new Vue()
 
 /* eslint-disable no-new */
 new Vue({
