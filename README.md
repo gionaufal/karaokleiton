@@ -1,6 +1,6 @@
 # karaokleiton
 
-> A Karaoke app that gets songs from YouTube, built with electron-vue
+> A funny karaoke app
 
 #### Screenshots
 
@@ -20,9 +20,6 @@ npm run dev
 
 # build electron application for production
 npm run build
-
-# run unit & end-to-end tests
-npm test
 
 
 # lint all JS/Vue component files in `src/`
@@ -51,4 +48,4 @@ To turn off the microphone return, run `pactl unload-module module-loopback`
 
 ---
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[1c165f7](https://github.com/SimulatedGREG/electron-vue/tree/1c165f7c5e56edaf48be0fbb70838a1af26bb015) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
