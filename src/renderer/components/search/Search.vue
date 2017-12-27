@@ -1,21 +1,19 @@
 <template>
   <section>
-    <input
-      type="text"
-      v-model="keyword"
-      @input="searchMusic"
-      placeholder="Busque pela música aqui">
-      <input type="checkbox" v-model="karaokeOnly">
-
-      <app-results
-        :videos="results"
-        v-if="results!==null"></app-results>
+    <app-form
+      :karaokeOnly="karaokeOnly"
+      :keyword="keyword"></app-form>
+    <app-results
+      :videos="results"
+      v-if="results!==null"></app-results>
   </section>  
 </template>
 
 <script>
   import axios from 'axios'
   import results from './Results.vue'
+  import form from './Form.vue'
+  import { busSearch } from '../../main'
 
   export default {
     data () {
@@ -23,11 +21,6 @@
         keyword: null,
         karaokeOnly: true,
         results: null
-      }
-    },
-    watch: {
-      karaokeOnly () {
-        this.searchMusic()
       }
     },
     methods: {
@@ -59,7 +52,19 @@
       }
     },
     components: {
-      appResults: results
+      appResults: results,
+      appForm: form
+    },
+    created () {
+      busSearch.$on('inputWasChanged', keyword => {
+        this.keyword = keyword
+        this.searchMusic()
+      })
+
+      busSearch.$on('checkboxWasChanged', value => {
+        this.karaokeOnly = value
+        this.searchMusic()
+      })
     }
   }
 </script>

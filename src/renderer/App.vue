@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import Search from './components/Search.vue'
+  import Search from './components/search/Search.vue'
   import Title from './components/Title.vue'
 
   export default {
