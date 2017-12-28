@@ -1,22 +1,25 @@
 <template>
-  <div class="row">
-    <div class="col-12 justify-content-around">
-      <div class="card"
-        v-for="video in videos"
-        :key="video.id.videoId"
-        @click="playVideo(video.id.videoId)">
+    <div class="col-8">
+      <div class="row">
+        <h1 class="col-12">Resultados</h1>
+        <div class="cards col-12 justify-content-around">
+          <div class="card"
+            v-for="video in videos"
+            :key="video.id.videoId"
+            @click="playVideo(video.id.videoId)">
 
-        <div class="img-container">
-          <img :src="video.snippet.thumbnails.medium.url">
-        </div>       
+            <div class="img-container">
+              <img :src="video.snippet.thumbnails.medium.url">
+            </div>
 
-        <div class="card-block">
-          <h4 class="card-title">{{ video.snippet.title }}</h4>
+            <div class="card-block">
+              <h4 class="card-title">{{ video.snippet.title }}</h4>
+            </div>
+
+          </div>
         </div>
-
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -33,7 +36,7 @@
 </script>
 
 <style lang="sass" scoped>
-  .col-12
+  .cards
     display: flex
     flex-wrap: wrap
 
