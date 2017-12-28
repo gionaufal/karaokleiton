@@ -16,7 +16,10 @@
   import Search from './components/search/Search.vue'
   import Title from './components/includes/Title.vue'
   import Player from './components/player/Player.vue'
-  import { busPlayer } from './main'
+  import { playerBus } from './main'
+  import db from './Database'
+
+  let videosRef = db.ref('videos')
 
   export default {
     data () {
@@ -29,15 +32,31 @@
       appSearch: Search,
       appPlayer: Player
     },
-    created () {
-      busPlayer.$on('cardWasClicked', videoId => {
+    methods: {
+      playNow (videoId) {
         this.videoId = videoId
         this.showPlayer = true
+      }
+    },
+    created () {
+      playerBus.$on('cardWasClicked', videoId => {
+        this.playNow(videoId)
       })
 
-      busPlayer.$on('closeWasClicked', close => {
+      playerBus.$on('closeWasClicked', close => {
         if (close === true) {
           this.showPlayer = false
+        }
+      })
+
+      playerBus.$on('playQueue', play => {
+        if (play === true) {
+          videosRef
+            .limitToFirst(1)
+            .on('child_added', snapshop => {
+              let video = snapshop.val()
+              this.playNow(video.videoId)
+            })
         }
       })
     }

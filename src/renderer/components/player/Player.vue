@@ -15,13 +15,13 @@
 </template>
 
 <script>
-  import { busPlayer } from '../../main'
+  import { playerBus } from '../../main'
 
   export default {
     props: ['videoId'],
     methods: {
       stopVideo () {
-        busPlayer.$emit('closeWasClicked', true)
+        playerBus.$emit('closeWasClicked', true)
       }
     },
     computed: {
@@ -37,7 +37,7 @@
 <style lang="sass" scoped>
   div
     height: 99vh
-  
+
   a
     cursor: pointer
     position: fixed

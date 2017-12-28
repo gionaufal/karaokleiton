@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import { busPlayer } from '../../main'
+  import { playerBus } from '../../main'
   import db from '../../Database'
 
   let videosRef = db.ref('videos')
@@ -36,7 +36,7 @@
     props: ['videos'],
     methods: {
       playVideo (videoId) {
-        busPlayer.$emit('cardWasClicked', videoId)
+        playerBus.$emit('cardWasClicked', videoId)
       },
       addToQueue (video) {
         let newItem = {

@@ -14,7 +14,7 @@ Vue.config.productionTip = false
 Vue.use(VueFire)
 
 export const busSearch = new Vue()
-export const busPlayer = new Vue()
+export const playerBus = new Vue()
 
 /* eslint-disable no-new */
 new Vue({

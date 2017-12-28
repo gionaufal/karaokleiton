@@ -3,7 +3,9 @@
     <div class="row">
       <h1 class="col-12">Fila</h1>
       <div class="col-12">
-        <button class="btn btn-sm btn-success">
+        <button
+          @click="playQueue"
+          class="btn btn-sm btn-success">
           <i class="fas fa-play-circle"></i> Tocar Fila
         </button>
 
@@ -30,6 +32,7 @@
 
 <script>
   import db from '../../Database'
+  import { playerBus } from '../../main'
 
   let videosRef = db.ref('videos')
 
@@ -42,6 +45,9 @@
     methods: {
       removeFromQueue (video) {
         videosRef.child(video['.key']).remove()
+      },
+      playQueue () {
+        playerBus.$emit('playQueue', true)
       },
       clearQueue () {
         let confirmClear = confirm('Todas as músicas serão removidas da fila. Deseja continuar?')
