@@ -5,8 +5,7 @@
         <div class="cards col-12 justify-content-around">
           <div class="card"
             v-for="video in videos"
-            :key="video.id.videoId"
-            @click="playVideo(video.id.videoId)">
+            :key="video.id.videoId">
 
             <div class="img-container">
               <img :src="video.snippet.thumbnails.medium.url">
@@ -14,6 +13,11 @@
 
             <div class="card-block">
               <h4 class="card-title">{{ video.snippet.title }}</h4>
+              <a
+                @click="addToQueue(video)"
+                class="btn btn-sm btn-outline-info">
+                <i class="fas fa-plus-circle"></i>
+              </a>
             </div>
 
           </div>
@@ -24,12 +28,23 @@
 
 <script>
   import { busPlayer } from '../../main'
+  import db from '../../Database'
+
+  let videosRef = db.ref('videos')
 
   export default {
     props: ['videos'],
     methods: {
       playVideo (videoId) {
         busPlayer.$emit('cardWasClicked', videoId)
+      },
+      addToQueue (video) {
+        let newItem = {
+          videoId: video.id.videoId,
+          title: video.snippet.title,
+          thumb: video.snippet.thumbnails.medium.url
+        }
+        videosRef.push(newItem)
       }
     }
   }
