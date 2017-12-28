@@ -44,9 +44,11 @@
         videosRef.child(video['.key']).remove()
       },
       clearQueue () {
-        confirm('Todas as músicas serão removidas da fila. Deseja continuar?', () => {
+        let confirmClear = confirm('Todas as músicas serão removidas da fila. Deseja continuar?')
+
+        if (confirmClear) {
           videosRef.remove()
-        })
+        }
       }
     }
   }
