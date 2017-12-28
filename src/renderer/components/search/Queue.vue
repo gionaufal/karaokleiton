@@ -12,6 +12,10 @@
           v-for="(video, index) in videos"
           :key="index">
             {{ video.title }}
+            <a
+              @click="removeFromQueue(video)">
+              <i class="fas fa-trash-alt"></i>
+            </a>
           </li>
       </ul>
     </div>
@@ -27,6 +31,11 @@
     firebase () {
       return {
         videos: videosRef
+      }
+    },
+    methods: {
+      removeFromQueue (video) {
+        videosRef.child(video['.key']).remove()
       }
     }
   }
