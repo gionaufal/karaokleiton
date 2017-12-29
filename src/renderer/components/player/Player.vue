@@ -1,27 +1,56 @@
 <template>
   <div>
-    <iframe
-      id="ytplayer"
-      type="text/html"
-      width="100%"
-      height="100%"
-      :src="videoUri"
-      frameborder="0"/>
-    <a
-      @click="stopVideo">
-      <i class="fas fa-window-close"></i>
-    </a>
+   <youtube
+    player-width="100%"
+    player-height="100%"
+    @ended="playNext"
+    :player-vars="{autoplay: 1, controls: 1, showinfo: 0}"
+    :video-id="videoId"></youtube>
+
+    <div class="controls">
+      <a
+        class="button"
+        @click="stopVideo">
+        <i class="fas fa-stop"></i>
+      </a>
+
+      <a
+        class="button"
+        @click="playNext">
+        <i class="fas fa-step-forward"></i>
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
   import { playerBus } from '../../main'
+  import db from '../../Database'
+
+  let videosRef = db.ref('videos')
 
   export default {
-    props: ['videoId'],
+    data () {
+      return {
+        videoId: null
+      }
+    },
     methods: {
       stopVideo () {
         playerBus.$emit('closeWasClicked', true)
+      },
+      playFirst () {
+        videosRef
+          .limitToFirst(1)
+          .once('child_added')
+          .then(dataSnapshot => {
+            let video = dataSnapshot.val()
+            this.videoId = video.videoId
+          })
+      },
+      playNext () {
+        // let video = videosRef.child('videoId/' + this.videoId)
+        // console.log(video.)
       }
     },
     computed: {
@@ -30,6 +59,9 @@
           return 'http://www.youtube.com/embed/' + this.videoId + '?autoplay=1&controls=0&showinfo=0'
         }
       }
+    },
+    created () {
+      this.playFirst()
     }
   }
 </script>
@@ -38,13 +70,16 @@
   div
     height: 99vh
 
-  a
-    cursor: pointer
+  .controls
     position: fixed
     left: 30px
     top: 10px
 
-    .fa-window-close
+    .button
       color: white
-      font-size: 2rem
+      cursor: pointer
+      font-size: 1.5rem
+
+      &:hover
+        color: fade-out(white, 0.5)
 </style>

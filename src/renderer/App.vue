@@ -3,7 +3,6 @@
     <div class="row">
       <app-player
         v-if="showPlayer"
-        :videoId="videoId"
         class="col-12"></app-player>
 
       <app-title class="col-12" v-show="!showPlayer"></app-title>
@@ -17,9 +16,6 @@
   import Title from './components/includes/Title.vue'
   import Player from './components/player/Player.vue'
   import { playerBus } from './main'
-  import db from './Database'
-
-  let videosRef = db.ref('videos')
 
   export default {
     data () {
@@ -34,7 +30,6 @@
     },
     methods: {
       playNow (videoId) {
-        this.videoId = videoId
         this.showPlayer = true
       }
     },
@@ -51,12 +46,7 @@
 
       playerBus.$on('playQueue', play => {
         if (play === true) {
-          videosRef
-            .limitToFirst(1)
-            .on('child_added', snapshop => {
-              let video = snapshop.val()
-              this.playNow(video.videoId)
-            })
+          this.playNow()
         }
       })
     }
