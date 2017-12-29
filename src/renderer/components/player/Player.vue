@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="playerContainer">
    <youtube
     player-width="100%"
     player-height="100%"
@@ -67,7 +67,7 @@
 </script>
 
 <style lang="sass" scoped>
-  div
+  .playerContainer > div:not(.controls)
     height: 99vh
 
   .controls
