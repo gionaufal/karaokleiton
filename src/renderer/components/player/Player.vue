@@ -46,11 +46,12 @@
           .then(dataSnapshot => {
             let video = dataSnapshot.val()
             this.videoId = video.videoId
+            this.currentVideoKey = dataSnapshot.key
           })
       },
       playNext () {
-        // let video = videosRef.child('videoId/' + this.videoId)
-        // console.log(video.)
+        videosRef.child(this.currentVideoKey).remove()
+        this.playFirst()
       }
     },
     computed: {
